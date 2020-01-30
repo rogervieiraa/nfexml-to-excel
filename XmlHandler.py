@@ -26,6 +26,7 @@ def process(file_path):
     sups = doc.getElementsByTagName("dup")
     first = True
     for sup in sups:
+        print("test")
         dt_sup = sup.getElementsByTagName("dVenc")[0].firstChild.nodeValue
         value_sup = sup.getElementsByTagName("vDup")[0].firstChild.nodeValue
         if(first):
@@ -44,6 +45,13 @@ def process(file_path):
             line.append(value_sup)
             lines.append(line)
 
+    # case no sup
+    if(first):
+        firstLine.append("")
+        firstLine.append("")
+        xml_number = doc.getElementsByTagName("chNFe")[0].firstChild.nodeValue
+        firstLine.append(xml_number)
+        lines.append(firstLine)
 
     return lines
     
