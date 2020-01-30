@@ -10,23 +10,19 @@ def process(file_path):
     firstLine = []
     dt_created = doc.getElementsByTagName("dhEmi")[0].firstChild.nodeValue
     nfe_id = doc.getElementsByTagName("nNF")[0].firstChild.nodeValue
-    fantasy_name = doc.getElementsByTagName("xFant")[0].firstChild.nodeValue
-    real_name = doc.getElementsByTagName("xNome")[0].firstChild.nodeValue
     
+    try:
+        name = doc.getElementsByTagName("xFant")[0].firstChild.nodeValue
+    except:
+        name  = doc.getElementsByTagName("xNome")[0].firstChild.nodeValue
     
-
     firstLine.append(dt_created)
-    if(fantasy_name):
-        firstLine.append(fantasy_name)
-    else:
-        firstLine.append(real_name)
-
+    firstLine.append(name)
     firstLine.append(nfe_id)
     
     sups = doc.getElementsByTagName("dup")
     first = True
     for sup in sups:
-        print("test")
         dt_sup = sup.getElementsByTagName("dVenc")[0].firstChild.nodeValue
         value_sup = sup.getElementsByTagName("vDup")[0].firstChild.nodeValue
         if(first):
